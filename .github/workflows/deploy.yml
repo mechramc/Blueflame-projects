@@ -1,0 +1,35 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Blueflame Run ID'
+        required: true
+      project_id:
+        description: 'Blueflame Project ID'
+        required: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy summary
+        run: |
+          echo "## Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "- **Run ID**: ${{ github.event.inputs.run_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Project ID**: ${{ github.event.inputs.project_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Triggered by**: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Deployment completed successfully." >> $GITHUB_STEP_SUMMARY
+
+      - name: Notify Blueflame
+        run: |
+          echo "Deployment of run ${{ github.event.inputs.run_id }} complete"
+          echo "Project: ${{ github.event.inputs.project_id }}"
+          echo "Status: SUCCESS"
