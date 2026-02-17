@@ -1,0 +1,32 @@
+title: "UX Layout Description"
+description: "Defines the UX layout optimized for desktop workflows with mobile read-only summaries, tailored for role-adaptive views."
+sections:
+  - id: "desktop_workflows"
+    title: "Desktop Workflows"
+    description: "Detailed layout optimized for desktop users, focusing on actionable insights and execution tracking."
+    content:
+      - "Role-specific dashboards for PMs, Executives, and Engineers."
+      - "Critical alerts displayed prominently in a non-intrusive manner."
+      - "Key metrics and project statuses are visually prioritized."
+      - "Interactive filtering and grouping capabilities for up to 100 active projects and 5,000 work items."
+  - id: "mobile_read_only"
+    title: "Mobile Read-Only Summaries"
+    description: "Simplified layout for mobile users, providing read-only access to key summaries."
+    content:
+      - "Role-adaptive summaries for quick insights."
+      - "Critical alerts displayed in a concise format."
+      - "Project statuses and key metrics available at a glance."
+  - id: "role_adaptive_views"
+    title: "Role-Adaptive Views"
+    description: "Tailored layouts for different user roles to enhance productivity."
+    content:
+      - "Project Managers: Focus on execution tracking, risks, and issues."
+      - "Executives: High-level overviews with critical metrics and alerts."
+      - "Engineers: Task-level details and execution priorities."
+  - id: "critical_alerts"
+    title: "Critical Alerts"
+    description: "Guidelines for displaying critical alerts prominently without unnecessary interruptions."
+    content:
+      - "Alerts must interrupt users only when inaction is costly."
+      - "Non-critical alerts should be displayed in a less intrusive manner."
+      - "Ensure alerts are visually distinct and contextually relevant."
