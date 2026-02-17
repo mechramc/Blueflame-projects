@@ -1,0 +1,72 @@
+# Dashboard Information Architecture
+
+version: 1.0
+
+roles:
+  - id: "pm"
+    name: "Project Manager"
+    description: "Focused on project execution, task assignments, and risk management."
+    view:
+      sections:
+        - id: "project-overview"
+          name: "Project Overview"
+          description: "Displays key project metrics, timelines, and progress."
+        - id: "task-management"
+          name: "Task Management"
+          description: "Allows detailed task assignments, tracking, and updates."
+        - id: "risk-issues-decisions"
+          name: "Risks, Issues, and Decisions"
+          description: "Structured fields for risks, issues, and decisions with optional freeform narratives."
+  - id: "executive"
+    name: "Executive"
+    description: "Focused on high-level insights, portfolio performance, and critical alerts."
+    view:
+      sections:
+        - id: "portfolio-overview"
+          name: "Portfolio Overview"
+          description: "Aggregated metrics across all active projects."
+        - id: "critical-alerts"
+          name: "Critical Alerts"
+          description: "Prominent display of critical issues requiring immediate attention."
+        - id: "key-metrics"
+          name: "Key Metrics"
+          description: "Visualizations of key performance indicators and trends."
+  - id: "engineer"
+    name: "Engineer"
+    description: "Focused on individual task execution and collaboration."
+    view:
+      sections:
+        - id: "my-tasks"
+          name: "My Tasks"
+          description: "List of assigned tasks with priorities and deadlines."
+        - id: "collaboration"
+          name: "Collaboration"
+          description: "Tools for team communication and updates."
+        - id: "project-details"
+          name: "Project Details"
+          description: "Detailed view of the project the engineer is contributing to."
+
+common_features:
+  - id: "search"
+    name: "Search"
+    description: "Global search functionality across projects, tasks, and issues."
+  - id: "notifications"
+    name: "Notifications"
+    description: "Role-specific notifications for updates and alerts."
+  - id: "filters"
+    name: "Filters"
+    description: "Advanced filtering options for tasks, projects, and metrics."
+
+constraints:
+  - "Optimize for desktop workflows with mobile read-only summaries."
+  - "Provide actionable insights and avoid vanity metrics."
+
+risks:
+  - id: "RISK-001"
+    description: "Webhooks may fail, leading to data inconsistencies or delays in updates."
+    mitigation: "Implement periodic batch backfill to reconcile data and ensure metrics are accurate."
+  - id: "RISK-002"
+    description: "Structured fields may limit user flexibility, leading to incomplete or inaccurate data entry."
+    mitigation: "Provide optional freeform narrative fields to capture additional context."
+
+# End of file

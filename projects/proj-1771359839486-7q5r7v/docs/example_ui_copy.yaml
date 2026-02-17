@@ -1,0 +1,23 @@
+example_ui_copy:
+  role_adaptive_views:
+    project_manager:
+      title: "Project Overview"
+      description: "Manage your projects efficiently with real-time insights and risk assessments."
+      alerts:
+        critical: "Immediate action required on overdue tasks!"
+    executive:
+      title: "Executive Dashboard"
+      description: "Get a high-level view of project statuses and key metrics."
+      alerts:
+        critical: "Review the financial impact of delayed projects!"
+    engineer:
+      title: "Engineering Tasks"
+      description: "Focus on your tasks with clear priorities and deadlines."
+      alerts:
+        critical: "Critical bugs need your attention!"
+  actionable_insights:
+    project_manager: "Identify bottlenecks and allocate resources effectively."
+    executive: "Make informed decisions based on project health metrics."
+    engineer: "Stay on top of your workload with prioritized task lists."
+  alerts:
+    critical: "These alerts require your immediate attention to avoid costly delays."

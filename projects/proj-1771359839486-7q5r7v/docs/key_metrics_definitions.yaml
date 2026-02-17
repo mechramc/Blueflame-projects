@@ -1,0 +1,87 @@
+# Key Metrics Definitions
+# This document defines the key metrics to ensure actionable insights and avoid vanity metrics.
+
+metrics:
+  - id: "metric-001"
+    name: "Cycle Time"
+    description: "The time it takes for a work item to move from 'In Progress' to 'Done'."
+    purpose: "Helps identify bottlenecks in the workflow and improve delivery speed."
+    actionable: true
+    calculation: "End Date - Start Date"
+    roles:
+      - "Project Manager"
+      - "Executive"
+
+  - id: "metric-002"
+    name: "Lead Time"
+    description: "The time it takes for a work item to move from 'Backlog' to 'Done'."
+    purpose: "Measures the overall efficiency of the delivery pipeline."
+    actionable: true
+    calculation: "Done Date - Backlog Date"
+    roles:
+      - "Project Manager"
+      - "Executive"
+
+  - id: "metric-003"
+    name: "Work in Progress (WIP)"
+    description: "The number of work items currently in progress."
+    purpose: "Helps monitor workload and ensure it aligns with team capacity."
+    actionable: true
+    calculation: "Count of items in 'In Progress' status"
+    roles:
+      - "Project Manager"
+      - "Engineer"
+
+  - id: "metric-004"
+    name: "Blocked Items"
+    description: "The number of work items currently blocked."
+    purpose: "Highlights issues that need immediate attention to avoid delays."
+    actionable: true
+    calculation: "Count of items with 'Blocked' status"
+    roles:
+      - "Project Manager"
+      - "Engineer"
+
+  - id: "metric-005"
+    name: "Risk Exposure"
+    description: "The total number of identified risks weighted by their severity."
+    purpose: "Ensures risks are actively monitored and mitigated."
+    actionable: true
+    calculation: "Sum of (Risk Severity * Risk Probability) for all risks"
+    roles:
+      - "Project Manager"
+      - "Executive"
+
+  - id: "metric-006"
+    name: "Critical Alerts"
+    description: "The number of critical alerts triggered in the system."
+    purpose: "Ensures critical issues are addressed promptly to avoid costly inaction."
+    actionable: true
+    calculation: "Count of alerts with 'Critical' priority"
+    roles:
+      - "Project Manager"
+      - "Executive"
+
+  - id: "metric-007"
+    name: "Team Velocity"
+    description: "The average number of story points completed per sprint."
+    purpose: "Helps forecast future delivery timelines and assess team performance."
+    actionable: true
+    calculation: "Sum of story points completed in the last N sprints / N"
+    roles:
+      - "Project Manager"
+
+  - id: "metric-008"
+    name: "Defect Rate"
+    description: "The ratio of defects reported to work items completed."
+    purpose: "Monitors quality and identifies areas for improvement."
+    actionable: true
+    calculation: "Number of defects reported / Number of work items completed"
+    roles:
+      - "Engineer"
+      - "Project Manager"
+
+# Notes:
+# - Metrics are designed to provide actionable insights and avoid vanity metrics.
+# - Each metric includes a clear purpose, calculation method, and target roles.
+# - Metrics should be reviewed periodically to ensure relevance and effectiveness.
