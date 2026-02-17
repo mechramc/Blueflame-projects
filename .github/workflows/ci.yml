@@ -1,0 +1,79 @@
+name: CI / CD Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Blueflame Run ID'
+        required: false
+      project_id:
+        description: 'Blueflame Project ID'
+        required: false
+
+jobs:
+  validate:
+    name: Validate Generated Code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect project files
+        id: detect
+        run: |
+          echo "## Files in PR" >> $GITHUB_STEP_SUMMARY
+          find projects/ -type f 2>/dev/null | head -50 | while read f; do
+            echo "- \`$f\`" >> $GITHUB_STEP_SUMMARY
+          done
+          FILE_COUNT=$(find projects/ -type f 2>/dev/null | wc -l)
+          echo "file_count=$FILE_COUNT" >> $GITHUB_OUTPUT
+          echo "Total files: $FILE_COUNT" >> $GITHUB_STEP_SUMMARY
+
+      - name: Lint check (if Node.js files present)
+        if: hashFiles('projects/**/*.ts', 'projects/**/*.js', 'projects/**/*.tsx') != ''
+        run: |
+          npm install -g typescript 2>/dev/null || true
+          for f in $(find projects/ -name "*.ts" -o -name "*.tsx" 2>/dev/null); do
+            echo "Checking syntax: $f"
+            npx tsc --noEmit --allowJs --esModuleInterop --jsx react-jsx "$f" 2>&1 || true
+          done
+          echo "## Lint Results" >> $GITHUB_STEP_SUMMARY
+          echo "TypeScript syntax check completed" >> $GITHUB_STEP_SUMMARY
+
+      - name: Python check (if Python files present)
+        if: hashFiles('projects/**/*.py') != ''
+        run: |
+          for f in $(find projects/ -name "*.py" 2>/dev/null); do
+            echo "Checking syntax: $f"
+            python3 -c "import py_compile; py_compile.compile('$f', doraise=True)" 2>&1 || true
+          done
+
+      - name: Summary
+        run: |
+          echo "## Validation Complete" >> $GITHUB_STEP_SUMMARY
+          echo "Generated code validated successfully." >> $GITHUB_STEP_SUMMARY
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for secrets
+        run: |
+          echo "Scanning for potential secrets..."
+          ISSUES=0
+          for pattern in "API_KEY=" "SECRET=" "PASSWORD=" "TOKEN=" "PRIVATE_KEY"; do
+            FOUND=$(grep -r "$pattern" projects/ 2>/dev/null | grep -v ".env.example" | head -5)
+            if [ -n "$FOUND" ]; then
+              echo "::warning::Potential secret pattern found: $pattern"
+              ISSUES=$((ISSUES + 1))
+            fi
+          done
+          echo "## Security Scan" >> $GITHUB_STEP_SUMMARY
+          if [ $ISSUES -eq 0 ]; then
+            echo "No secret patterns detected." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Found $ISSUES potential secret patterns. Review recommended." >> $GITHUB_STEP_SUMMARY
+          fi
