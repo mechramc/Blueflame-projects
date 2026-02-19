@@ -1,0 +1,45 @@
+/* Responsive styles for Delta Labs landing page */
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .header {
+        text-align: center;
+    }
+    .animation-container {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    body {
+        font-size: 16px;
+        padding: 20px;
+    }
+    .header {
+        text-align: left;
+    }
+    .animation-container {
+        width: 80%;
+        height: 600px;
+    }
+}
+
+/* General styles */
+body {
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+.header {
+    margin-bottom: 20px;
+}
+.animation-container {
+    position: relative;
+    overflow: hidden;
+}
