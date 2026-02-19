@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Labs Landing Page</title>
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <audio id="background-music" loop>
+        <source src="audio/background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="src/animations/flying-math-symbols.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('background-music');
+            music.play();
+            initFlyingMathSymbols();
+        });
+    </script>
+</body>
+</html>
