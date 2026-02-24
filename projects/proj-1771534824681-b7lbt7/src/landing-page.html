@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Labs Landing Page</title>
+    <link rel="stylesheet" href="styles/responsive.css">
+    <style>
+        body { margin: 0; overflow: hidden; }
+        #animation-container { width: 100vw; height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="animation-container"></div>
+    <audio id="background-music" loop>
+        <source src="audio/background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="scripts/animations.js"></script>
+    <script>
+        // Start background music
+        const music = document.getElementById('background-music');
+        music.volume = 0.5; // Set initial volume
+        music.play();
+
+        // Load animations
+        window.onload = () => {
+            initAnimations();
+        };
+    </script>
+</body>
+</html>
